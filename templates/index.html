@@ -206,6 +206,8 @@
               </div>
               
               <div class="relative">
+                <input type="file" id="resume-file" accept=".pdf"
+                       onchange="uploadResume()">
                 <textarea id="resume-input" rows="8" class="w-full bg-[#050505] border border-white/10 rounded-xl p-4 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-blue-400 transition-colors custom-scrollbar" placeholder="PASTE RESUME BODY HERE (e.g. Experience, Projects, Tech stack list...)"></textarea>
               </div>
 
@@ -213,7 +215,9 @@
                 <i data-lucide="cpu" class="w-4 h-4"></i>
                 <span id="analysis-btn-text">Run Simulated AI Analysis</span>
               </button>
+              <div id="response-box"></div>
             </div>
+            
 
             <div class="lg:col-span-5 h-full">
               <!-- Result card (Empty State) -->
@@ -1512,7 +1516,8 @@ async function askAI() {
 
     const data = await response.json();
 
-    alert(data.answer);
+    document.getElementById("response-box").innerHTML =
+    data.answer;
 }
 </script>
 <script>
@@ -1532,7 +1537,36 @@ async function askAI() {
 
     const data = await response.json();
 
-    alert(data.answer);
+    document.getElementById("response-box").innerHTML =
+       data.answer;
+}
+</script>
+<script>
+async function uploadResume() {
+
+    const file =
+        document.getElementById("resume-file")
+        .files[0];
+
+    const formData = new FormData();
+
+    formData.append(
+        "resume",
+        file
+    );
+
+    const response =
+        await fetch("/upload", {
+            method: "POST",
+            body: formData
+        });
+
+    const data =
+        await response.json();
+
+    document.getElementById(
+        "resume-input"
+    ).value = data.text;
 }
 </script>
 </body>
