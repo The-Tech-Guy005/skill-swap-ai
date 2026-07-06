@@ -1,2 +1,1539 @@
-<h1>SkillSwap AI Mentor</h1>
-<p>Hello AMD Hackathon!</p>
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillSwap AI - Cognitive Career Mentor</title>
+  
+  <!-- Font imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Play CDN for compiled Tailwind CSS in HTML -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  
+  <!-- Custom CSS stylesheet -->
+  <link rel="stylesheet" 
+        href="{{ url_for('static', filename='style.css') }}">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#050505] min-h-screen text-slate-100 selection:bg-blue-500/30 selection:text-white">
+
+  <!-- Glow effects in background -->
+  <div class="fixed top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-blue-950/20 to-transparent pointer-events-none z-0"></div>
+  <div class="fixed top-1/4 right-0 w-[400px] h-[400px] bg-blue-900/5 rounded-full blur-[120px] pointer-events-none z-0 ambient-glow"></div>
+  <div class="fixed bottom-10 left-1/4 w-[350px] h-[350px] bg-indigo-900/5 rounded-full blur-[100px] pointer-events-none z-0 ambient-glow"></div>
+
+  <div class="relative z-10 flex flex-col min-h-screen">
+    
+    <!-- Dynamic Global Navbar -->
+    <header class="sticky top-0 z-40 w-full bg-[#050505]/80 backdrop-blur-md border-b border-white/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-blue-400 transition-colors">
+            <i data-lucide="cpu" class="w-4 h-4 text-blue-400"></i>
+          </div>
+          <span class="font-display font-bold text-base tracking-tight text-white">SkillSwap <span class="text-blue-400">AI</span></span>
+        </a>
+        
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#resume-section" class="text-xs font-mono text-slate-400 hover:text-white tracking-wider transition-colors">ATS ANALYZER</a>
+          <a href="#roadmap-section" class="text-xs font-mono text-slate-400 hover:text-white tracking-wider tracking-wider transition-colors">LEARNING ROADMAPS</a>
+          <a href="#projects-section" class="text-xs font-mono text-slate-400 hover:text-white tracking-wider transition-colors">PROJECT BLUEPRINTS</a>
+        </nav>
+        
+        <div>
+          <button onclick="openModal()" class="px-4 py-2 rounded-xl bg-white hover:bg-blue-400 text-black font-display font-semibold text-xs shadow-md shadow-white/5 transition-all cursor-pointer flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Launch Mentor
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      
+      <!-- HERO SECTION -->
+      <section class="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-mono text-slate-300 tracking-wide">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-400"></i>
+              <span>NEXT-GENERATION COGNITIVE ROADMAP AGENT</span>
+            </div>
+            
+            <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]">
+              Architect your career evolution
+            </h1>
+            
+            <p class="font-sans text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl">
+              Leverage neural networks, custom skill roadmaps, and portfolio blueprints to bypass traditional software engineering learning curves.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+              <button onclick="openModal()" class="px-6 py-3 rounded-xl bg-white hover:bg-blue-400 text-black font-display font-semibold text-xs shadow-md shadow-white/5 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                <i data-lucide="compass" class="w-4 h-4"></i>
+                Launch My Roadmap
+              </button>
+              <a href="#resume-section" class="px-6 py-3 rounded-xl border border-white/10 hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] text-slate-300 font-display font-semibold text-xs transition-all flex items-center justify-center gap-1.5">
+                <i data-lucide="terminal" class="w-4 h-4"></i>
+                Explore AI Analyzer
+              </a>
+            </div>
+          </div>
+          
+          <div class="lg:col-span-5 grid grid-cols-1 gap-4">
+            
+            <a href="#resume-section" class="group p-5 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all cursor-pointer">
+              <div class="flex items-start justify-between">
+                <div class="space-y-1">
+                  <span class="text-[10px] font-mono text-blue-400 font-bold tracking-widest">COGNITIVE GAP ANALYSIS</span>
+                  <h3 class="font-display font-bold text-sm text-white group-hover:text-blue-400 transition-colors">Resume ATS Optimization</h3>
+                  <p class="text-xs text-slate-400 leading-relaxed">Paste your credentials to evaluate parser-score ratings and extract clear technical training voids.</p>
+                </div>
+                <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/5 text-slate-500 group-hover:text-white transition-colors">
+                  <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </a>
+
+            <a href="#roadmap-section" class="group p-5 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all cursor-pointer">
+              <div class="flex items-start justify-between">
+                <div class="space-y-1">
+                  <span class="text-[10px] font-mono text-blue-400 font-bold tracking-widest">DYNAMIC CURATIONS</span>
+                  <h3 class="font-display font-bold text-sm text-white group-hover:text-blue-400 transition-colors">Milestone Learning Paths</h3>
+                  <p class="text-xs text-slate-400 leading-relaxed">Skip the documentation maze. Follow chronological structures complete with high-value core documentation.</p>
+                </div>
+                <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/5 text-slate-500 group-hover:text-white transition-colors">
+                  <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </a>
+
+            <a href="#projects-section" class="group p-5 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all cursor-pointer">
+              <div class="flex items-start justify-between">
+                <div class="space-y-1">
+                  <span class="text-[10px] font-mono text-blue-400 font-bold tracking-widest">PRODUCTION GRADE SPECIFICATIONS</span>
+                  <h3 class="font-display font-bold text-sm text-white group-hover:text-blue-400 transition-colors">Portfolio Recommendations</h3>
+                  <p class="text-xs text-slate-400 leading-relaxed">Claim complete system architecture cards, user stories, and estimation maps to build real portfolio power.</p>
+                </div>
+                <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/5 text-slate-500 group-hover:text-white transition-colors">
+                  <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ACTIVE ONBOARDING RESULT BANNER -->
+      <section id="onboarding-advice-banner" class="hidden border-y border-white/10 bg-white/[0.03] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[250px] h-[250px] bg-blue-500/5 rounded-full blur-[80px]"></div>
+        <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[250px] h-[250px] bg-blue-500/5 rounded-full blur-[80px]"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+          <div class="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-circle" class="w-5 h-5 text-blue-400"></i>
+              <span class="font-display font-bold text-sm text-white uppercase tracking-wider">Targeted Career Specialty Activated</span>
+            </div>
+            <button onclick="closeAdviceBanner()" class="text-slate-500 hover:text-white transition-colors">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-8 space-y-4">
+              <div class="flex items-center gap-3">
+                <span id="banner-exp" class="text-xs font-mono bg-blue-500/10 border border-blue-500/20 text-blue-300 px-2.5 py-1 rounded-md uppercase font-semibold">Junior Level</span>
+                <span id="banner-role" class="text-xs font-mono bg-white/5 border border-white/10 text-slate-300 px-2.5 py-1 rounded-md uppercase font-semibold">Frontend Engineer</span>
+              </div>
+              <h3 class="font-display font-extrabold text-white text-xl sm:text-2xl leading-tight">Custom Cognitive Action Plan Ready</h3>
+              <p class="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Based on your seniority profile and familiarity with <span id="banner-skills" class="text-white font-semibold font-mono">React, TypeScript</span>, we have optimized your learning roadmap nodes and filtered engineering briefs below.
+              </p>
+              
+              <div class="p-4 rounded-xl border border-white/5 bg-[#050505]/40 font-sans text-xs text-slate-300 leading-relaxed">
+                <span class="font-mono text-blue-400 font-bold block mb-1">MENTOR ADVICE FOR YOUR TRACK:</span>
+                <span id="banner-advice-text">Focus heavily on project completion and core software foundations...</span>
+              </div>
+            </div>
+            
+            <div class="md:col-span-4 flex flex-col gap-2 w-full">
+              <a href="#resume-section" class="w-full py-3 px-4 rounded-xl border border-white/10 hover:border-blue-400 bg-white/[0.02] hover:bg-white/[0.05] text-slate-300 font-display font-semibold text-xs transition-all flex items-center justify-center gap-1.5">
+                <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                Verify Resume ATS Score
+              </a>
+              <a href="#roadmap-section" class="w-full py-3 px-4 rounded-xl bg-white hover:bg-blue-400 text-black font-display font-semibold text-xs shadow-md shadow-white/5 transition-all flex items-center justify-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                Open Learning Milestones
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESUME ANALYZER SECTION -->
+      <section id="resume-section" class="py-24 border-t border-white/10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+          
+          <div class="max-w-xl mb-12">
+            <div class="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-mono text-slate-300 tracking-wide mb-4">
+              <i data-lucide="scan-line" class="w-3.5 h-3.5 text-blue-400"></i>
+              <span>COGNITIVE RESUME MODELING</span>
+            </div>
+            <h2 class="font-display font-bold text-2xl sm:text-3xl text-white">ATS Optimization & Gaps</h2>
+            <p class="font-sans text-gray-400 mt-2">
+              Paste your raw technical resume. Our simulated parser compiles immediate feedback on detractor words, missing core skills, and layouts.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-7 space-y-4">
+              <div class="flex items-center justify-between">
+                <label class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">PASTE COGNITIVE RESUME SUMMARY</label>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="fillResumeTemplate('junior')" class="text-[10px] font-mono text-blue-400 hover:text-blue-300 transition-colors px-2 py-1 rounded bg-white/5 border border-white/5">Jr Frontend</button>
+                  <button onclick="fillResumeTemplate('mid')" class="text-[10px] font-mono text-blue-400 hover:text-blue-300 transition-colors px-2 py-1 rounded bg-white/5 border border-white/5">Mid Fullstack</button>
+                  <button onclick="fillResumeTemplate('senior')" class="text-[10px] font-mono text-blue-400 hover:text-blue-300 transition-colors px-2 py-1 rounded bg-white/5 border border-white/5">Sr Cloud</button>
+                </div>
+              </div>
+              
+              <div class="relative">
+                <textarea id="resume-input" rows="8" class="w-full bg-[#050505] border border-white/10 rounded-xl p-4 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-blue-400 transition-colors custom-scrollbar" placeholder="PASTE RESUME BODY HERE (e.g. Experience, Projects, Tech stack list...)"></textarea>
+              </div>
+
+              <button id="run-analysis-btn" onclick="askAI()" class="w-full py-3.5 rounded-xl bg-white hover:bg-blue-400 text-black font-display font-semibold text-xs shadow-md shadow-white/5 flex items-center justify-center gap-2 transition-all cursor-pointer">
+                <i data-lucide="cpu" class="w-4 h-4"></i>
+                <span id="analysis-btn-text">Run Simulated AI Analysis</span>
+              </button>
+            </div>
+
+            <div class="lg:col-span-5 h-full">
+              <!-- Result card (Empty State) -->
+              <div id="analysis-empty-state" class="border border-white/5 bg-white/[0.01] rounded-2xl p-8 text-center h-[340px] flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-full border border-white/10 bg-white/[0.02] flex items-center justify-center text-slate-500 mb-4">
+                  <i data-lucide="file-text" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-display font-semibold text-sm text-white">Results Pending</h4>
+                <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto leading-relaxed">Provide your resume details on the left and trigger analysis to review your custom ATS scoring metrics.</p>
+              </div>
+
+              <!-- Loading State -->
+              <div id="analysis-loading-state" class="hidden border border-white/5 bg-white/[0.01] rounded-2xl p-8 text-center h-[340px] flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-full border border-blue-400/20 border-t-blue-400 animate-spin flex items-center justify-center mb-4">
+                  <div class="w-6 h-6 rounded-full bg-blue-500/5"></div>
+                </div>
+                <h4 class="font-display font-semibold text-sm text-white">Compiling ATS Heuristics</h4>
+                <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto leading-relaxed">Parsing technology lists, scanning ownership verbs, and indexing skills gaps against recruiter profiles...</p>
+              </div>
+
+              <!-- Active Result Panel -->
+              <div id="analysis-results" class="hidden border border-white/[0.08] bg-white/[0.03] rounded-2xl p-6 h-[400px] flex flex-col justify-between overflow-y-auto custom-scrollbar">
+                <div>
+                  <div class="flex items-center justify-between pb-4 border-b border-white/5 mb-5">
+                    <div>
+                      <span class="text-[9px] font-mono text-blue-400 font-bold tracking-widest block leading-none">ANALYSIS COMPLETED</span>
+                      <h4 id="result-role-match" class="font-display font-bold text-sm text-white mt-1">Full-Stack Web Developer</h4>
+                    </div>
+                    
+                    <!-- Progress Circle -->
+                    <div class="w-12 h-12 rounded-full border border-white/5 bg-[#050505]/40 flex items-center justify-center relative shrink-0">
+                      <svg class="w-full h-full transform -rotate-90 p-1">
+                        <circle cx="20" cy="20" r="15" class="stroke-white/5 fill-none" stroke-width="2.5" />
+                        <circle id="result-score-circle" cx="20" cy="20" r="15" class="stroke-blue-400 fill-none" stroke-width="2.5" stroke-dasharray="94.2" stroke-dashoffset="94.2" style="transition: stroke-dashoffset 1s ease-out;" />
+                      </svg>
+                      <span id="result-score-text" class="absolute text-[10px] font-mono font-bold text-blue-400">0%</span>
+                    </div>
+                  </div>
+
+                  <div class="space-y-4">
+                    <div>
+                      <h5 class="text-[9px] font-mono text-slate-400 uppercase tracking-widest mb-1.5">Detected Strengths</h5>
+                      <div id="result-strengths-container" class="space-y-1">
+                        <!-- Strength items will be inserted dynamically -->
+                      </div>
+                    </div>
+
+                    <div>
+                      <h5 class="text-[9px] font-mono text-red-400/80 uppercase tracking-widest mb-1.5">Target Skills Gaps</h5>
+                      <div id="result-gaps-container" class="space-y-2">
+                        <!-- Gap items will be inserted dynamically -->
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h5 class="text-[9px] font-mono text-blue-400/80 uppercase tracking-widest mb-1.5">AI Action Recommendations</h5>
+                      <div id="result-recommendations-container" class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+                        <!-- Recommendation items will be inserted dynamically -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ROADMAP GENERATOR SECTION -->
+      <section id="roadmap-section" class="py-24 bg-[#050505] border-t border-white/10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+          
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+            <div class="max-w-xl">
+              <div class="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-mono text-slate-300 tracking-wide mb-4">
+                <i data-lucide="milestone" class="w-3.5 h-3.5"></i>
+                <span>DYNAMIC CAREER SEQUENCING</span>
+              </div>
+              <h2 class="font-display font-bold text-2xl sm:text-3xl text-white">Learning Roadmaps</h2>
+              <p class="font-sans text-gray-400 mt-2">
+                Skip the informational overload. Our simulated sequences map out highly structured step-by-step milestones, listing specific technologies and hand-curated documentation tutorials.
+              </p>
+            </div>
+            
+            <div class="flex items-center gap-4">
+              <div class="text-right">
+                <span id="roadmap-nodes-count" class="text-xs font-mono text-slate-500 uppercase tracking-wider block">Nodes Status</span>
+                <span id="roadmap-nodes-text" class="text-sm font-bold text-white">0 / 4 Nodes Mastered</span>
+              </div>
+              
+              <!-- Progress Indicator -->
+              <div class="w-16 h-16 rounded-full border border-white/10 bg-white/[0.03] flex items-center justify-center relative shrink-0">
+                <svg class="w-full h-full transform -rotate-90 p-1">
+                  <circle cx="28" cy="28" r="22" class="stroke-white/5 fill-none" stroke-width="4" />
+                  <circle id="roadmap-progress-circle" cx="28" cy="28" r="22" class="stroke-blue-400 fill-none" stroke-width="4" stroke-dasharray="138.2" stroke-dashoffset="138.2" style="transition: stroke-dashoffset 0.6s ease-out;" />
+                </svg>
+                <span id="roadmap-progress-text" class="absolute text-[11px] font-mono font-bold text-blue-400">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Paths selector list -->
+            <div class="lg:col-span-4 space-y-3">
+              <span class="text-[10px] font-mono text-slate-500 tracking-widest uppercase">Select Specialist Pathway</span>
+              <div id="path-list" class="space-y-3">
+                <!-- Path cards will be populated here -->
+              </div>
+            </div>
+
+            <!-- Path milestones middle timeline -->
+            <div class="lg:col-span-4 space-y-4">
+              <span class="text-[10px] font-mono text-slate-500 tracking-widest uppercase block">Milestone Sequence:</span>
+              <div id="timeline-container" class="relative pl-6 space-y-6 before:absolute before:left-2 before:top-4 before:bottom-4 before:w-[2px] before:bg-white/10">
+                <!-- Timeline items will be populated here -->
+              </div>
+            </div>
+
+            <!-- Path detail specification panel right -->
+            <div class="lg:col-span-4 h-full">
+              <div class="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 h-full flex flex-col justify-between min-h-[420px]">
+                <div id="milestone-details-container">
+                  <!-- Active milestone detail content will be populated here -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PROJECT RECOMMENDATIONS SECTION -->
+      <section id="projects-section" class="py-24 bg-[#050505] border-t border-white/10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+          
+          <div class="max-w-xl mb-12">
+            <div class="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-mono text-slate-300 tracking-wide mb-4">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+              <span>PRODUCTION-GRADE BLUEPRINTS</span>
+            </div>
+            <h2 class="font-display font-bold text-2xl sm:text-3xl text-white">Project Recommendations</h2>
+            <p class="font-sans text-gray-400 mt-2">
+              Ditch the generic todo-list projects. Filter enterprise portfolio blueprints specifying complete file structures, database relationships, and modular test-driven user stories.
+            </p>
+          </div>
+
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div class="relative w-full max-w-md">
+              <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-500"></i>
+              <input id="project-search-input" onkeyup="filterProjects()" type="text" class="w-full bg-[#050505] border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-sm text-slate-300 placeholder-slate-500 focus:outline-none focus:border-blue-400 transition-colors" placeholder="Search by technology (e.g. React, Python, Redis)...">
+            </div>
+
+            <div class="flex items-center gap-2 p-1 bg-white/[0.02] border border-white/5 rounded-xl shrink-0">
+              <button onclick="setDifficultyFilter('All')" class="diff-btn px-4 py-2 text-xs font-display font-medium rounded-lg transition-colors cursor-pointer bg-blue-500/10 text-blue-300 border border-blue-500/30">All</button>
+              <button onclick="setDifficultyFilter('Easy')" class="diff-btn px-4 py-2 text-xs font-display font-medium rounded-lg transition-colors cursor-pointer text-slate-500 hover:text-slate-300">Easy</button>
+              <button onclick="setDifficultyFilter('Medium')" class="diff-btn px-4 py-2 text-xs font-display font-medium rounded-lg transition-colors cursor-pointer text-slate-500 hover:text-slate-300">Medium</button>
+              <button onclick="setDifficultyFilter('Hard')" class="diff-btn px-4 py-2 text-xs font-display font-medium rounded-lg transition-colors cursor-pointer text-slate-500 hover:text-slate-300">Hard</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Projects selector list on left -->
+            <div id="project-list" class="lg:col-span-5 space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+              <!-- Project cards will populate here -->
+            </div>
+
+            <!-- Project specs visualizer on right -->
+            <div class="lg:col-span-7 h-full">
+              <div class="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 flex flex-col h-full justify-between min-h-[500px] backdrop-blur-sm">
+                <div id="project-spec-container">
+                  <!-- Selected project specs populated here -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CTA SECTION -->
+      <section class="py-24 border-t border-white/10 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white/[0.01]">
+        <div class="max-w-4xl mx-auto text-center space-y-6 relative z-10">
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto text-blue-400">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight leading-none">Initialize Your AI Career Consultation</h2>
+          <p class="font-sans text-sm text-gray-400 max-w-lg mx-auto leading-relaxed">
+            Register to join our newsletter lists, securing first-hand insights on newly compiled technology roadmaps, ATS guidelines, and high-quality blueprints.
+          </p>
+          
+          <form id="newsletter-form" onsubmit="handleNewsletterSubmit(event)" class="max-w-md mx-auto flex gap-3 pt-2">
+            <input type="email" required class="flex-1 bg-[#050505] border border-white/10 rounded-xl px-4 py-3 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-blue-400 transition-colors" placeholder="ENTER YOUR PRIMARY ENTERPRISE EMAIL">
+            <button type="submit" class="px-5 py-3 rounded-xl bg-white hover:bg-blue-400 text-black font-display font-semibold text-xs shadow-md transition-all cursor-pointer">Subscribe</button>
+          </form>
+          
+          <div id="newsletter-success-alert" class="hidden max-w-md mx-auto p-4 rounded-xl border border-blue-500/20 bg-blue-500/5 text-blue-300 text-xs font-mono text-center">
+            <span class="font-bold">✓ REGISTRATION DETECTED.</span> Welcome to our notification networks.
+          </div>
+
+          <div class="pt-4">
+            <button onclick="openModal()" class="text-xs font-mono text-slate-500 hover:text-white underline underline-offset-4 transition-colors">Start Diagnostic Onboarding Instead</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050505] border-t border-white/5 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-blue-400">
+            <i data-lucide="cpu" class="w-3 h-3"></i>
+          </div>
+          <span class="font-display font-bold text-sm tracking-tight text-white">SkillSwap <span class="text-blue-400">AI</span></span>
+        </div>
+        
+        <p class="text-xs text-slate-600 font-mono">© 2026 SkillSwap AI. ALL SPECIFICATIONS AND REVIEWS ARE FULL-STACK SIMULATED COGNITIVE RUNTIMES.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ONBOARDING MODAL -->
+  <div id="onboarding-modal" class="hidden fixed inset-0 z-50 overflow-hidden flex items-center justify-center p-4 sm:p-6 md:p-8">
+    <!-- Backdrop blur shadow -->
+    <div onclick="closeModal()" class="absolute inset-0 bg-[#050505]/90 backdrop-blur-md"></div>
+    
+    <!-- Modal panel wrapper -->
+    <div class="relative w-full max-w-lg rounded-2xl border border-white/[0.08] bg-[#050505]/95 p-6 md:p-8 shadow-2xl shadow-white/5 overflow-hidden z-10">
+      
+      <!-- Top banner line -->
+      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 to-indigo-500"></div>
+      <div class="absolute -top-12 -right-12 w-24 h-24 bg-blue-500/5 rounded-full blur-xl pointer-events-none"></div>
+
+      <!-- Close button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors cursor-pointer p-1">
+        <i data-lucide="x" class="w-4.5 h-4.5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-2.5 mb-6">
+        <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 border border-white/10 text-blue-400">
+          <i data-lucide="cpu" class="w-4.5 h-4.5"></i>
+        </div>
+        <div>
+          <span class="text-[9px] font-mono text-blue-400 tracking-widest block leading-none">AI COGNITIVE CONSULTATION</span>
+          <h3 class="font-display font-bold text-white text-base mt-0.5">Configure Mentorship Path</h3>
+        </div>
+      </div>
+
+      <!-- Step dots -->
+      <div class="flex items-center gap-1.5 mb-8">
+        <div id="modal-indicator-1" class="h-1 flex-1 rounded-full transition-all duration-300 bg-blue-400"></div>
+        <div id="modal-indicator-2" class="h-1 flex-1 rounded-full transition-all duration-300 bg-white/5"></div>
+        <div id="modal-indicator-3" class="h-1 flex-1 rounded-full transition-all duration-300 bg-white/5"></div>
+      </div>
+
+      <!-- STEP 1: SENIORITY LEVEL selection -->
+      <div id="modal-step-1" class="space-y-5">
+        <div>
+          <h4 class="font-display font-bold text-white text-lg">Select Your Seniority Level</h4>
+          <p class="text-xs text-gray-400 mt-1">This adjusts parsing heuristic models to match target corporate recruiters.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-3">
+          <button onclick="selectSeniority('Junior')" class="onboard-seniority-btn w-full text-left p-3.5 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-sm font-medium">Junior Experience Profile</span>
+            <i data-lucide="star" class="w-4 h-4 text-slate-600"></i>
+          </button>
+          <button onclick="selectSeniority('Mid-Level')" class="onboard-seniority-btn w-full text-left p-3.5 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-sm font-medium">Mid-Level Experience Profile</span>
+            <i data-lucide="star" class="w-4 h-4 text-slate-600"></i>
+          </button>
+          <button onclick="selectSeniority('Senior')" class="onboard-seniority-btn w-full text-left p-3.5 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-sm font-medium">Senior Experience Profile</span>
+            <i data-lucide="star" class="w-4 h-4 text-slate-600"></i>
+          </button>
+          <button onclick="selectSeniority('Lead')" class="onboard-seniority-btn w-full text-left p-3.5 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-sm font-medium">Lead Experience Profile</span>
+            <i data-lucide="star" class="w-4 h-4 text-slate-600"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: SPECIFY CAREER TRACK -->
+      <div id="modal-step-2" class="hidden space-y-5">
+        <div>
+          <h4 class="font-display font-bold text-white text-lg">Define Your Target Career Specialty</h4>
+          <p class="text-xs text-gray-400 mt-1">Your learning paths and gaps will specialize strictly on this domain.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-3">
+          <button onclick="selectSpecialty('Frontend Engineer')" class="onboard-specialty-btn w-full text-left p-3 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-xs font-medium">Frontend Engineer</span>
+            <i data-lucide="compass" class="w-4 h-4 text-slate-600"></i>
+          </button>
+          <button onclick="selectSpecialty('Backend Engineer')" class="onboard-specialty-btn w-full text-left p-3 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-xs font-medium">Backend Engineer</span>
+            <i data-lucide="compass" class="w-4 h-4 text-slate-600"></i>
+          </button>
+          <button onclick="selectSpecialty('Fullstack Engineer')" class="onboard-specialty-btn w-full text-left p-3 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-xs font-medium">Fullstack Engineer</span>
+            <i data-lucide="compass" class="w-4 h-4 text-slate-600"></i>
+          </button>
+          <button onclick="selectSpecialty('DevOps Architect')" class="onboard-specialty-btn w-full text-left p-3 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-xs font-medium">DevOps Architect</span>
+            <i data-lucide="compass" class="w-4 h-4 text-slate-600"></i>
+          </button>
+          <button onclick="selectSpecialty('AI/ML Specialist')" class="onboard-specialty-btn w-full text-left p-3 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all">
+            <span class="text-xs font-medium">AI/ML Specialist</span>
+            <i data-lucide="compass" class="w-4 h-4 text-slate-600"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: SELECT FAMILIAR TECH -->
+      <div id="modal-step-3" class="hidden space-y-5">
+        <div>
+          <h4 class="font-display font-bold text-white text-lg">Verify Your Technology Familiarity</h4>
+          <p class="text-xs text-gray-400 mt-1">Select technologies you are comfortable with to customize portfolio project recommendations.</p>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-2 max-h-[180px] overflow-y-auto pr-1 custom-scrollbar">
+          <button onclick="toggleFamiliarTech('React', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">React</button>
+          <button onclick="toggleFamiliarTech('TypeScript', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">TypeScript</button>
+          <button onclick="toggleFamiliarTech('Node.js', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Node.js</button>
+          <button onclick="toggleFamiliarTech('Python', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Python</button>
+          <button onclick="toggleFamiliarTech('Docker', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Docker</button>
+          <button onclick="toggleFamiliarTech('AWS', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">AWS</button>
+          <button onclick="toggleFamiliarTech('Kubernetes', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Kubernetes</button>
+          <button onclick="toggleFamiliarTech('PostgreSQL', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">PostgreSQL</button>
+          <button onclick="toggleFamiliarTech('PyTorch', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">PyTorch</button>
+          <button onclick="toggleFamiliarTech('Scikit-Learn', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Scikit-Learn</button>
+          <button onclick="toggleFamiliarTech('Pandas', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Pandas</button>
+          <button onclick="toggleFamiliarTech('Hugging Face', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Hugging Face</button>
+          <button onclick="toggleFamiliarTech('Go/Rust', this)" class="p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all">Go/Rust</button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between pt-6 mt-6 border-t border-white/5">
+        <span id="onboarding-step-text" class="text-xs text-slate-500 font-mono">STEP 1 OF 3</span>
+        
+        <div class="flex items-center gap-2">
+          <button id="modal-back-btn" onclick="previousStep()" class="hidden px-4 py-2 rounded-xl border border-white/5 hover:border-white/10 text-slate-400 hover:text-white font-display text-xs transition-colors cursor-pointer">
+            Back
+          </button>
+          
+          <button id="modal-next-btn" onclick="nextStep()" class="px-5 py-2.5 rounded-xl bg-white hover:bg-blue-400 text-black font-display font-semibold text-xs shadow-md shadow-white/5 flex items-center gap-1 cursor-pointer transition-colors">
+            Next
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APPLICATION DATA & CONTROLLERS (VANILLA JAVASCRIPT ENGINE) -->
+  <script>
+    // --- STATIC CONTENT DATA ---
+    const CAREER_PATHS = [
+      {
+        id: "ai-engineer",
+        title: "AI & Machine Learning Engineer",
+        category: "Artificial Intelligence",
+        description: "Design, build, and deploy intelligent algorithms and neural networks to solve complex real-world problems.",
+        difficulty: "Advanced",
+        estimatedTime: "6 - 9 Months",
+        steps: [
+          {
+            id: "ai-step-1",
+            title: "Foundations of Python & Applied Mathematics",
+            description: "Master Python programming, linear algebra, calculus, and mathematical statistics required for model understanding.",
+            skillsAcquired: ["Python", "NumPy", "Linear Algebra", "Calculus", "Statistics"],
+            estimatedWeeks: 6,
+            resources: [
+              { title: "MIT Mathematics for Computer Science", type: "course", url: "#" },
+              { title: "NumPy Official Quickstart", type: "doc", url: "#" }
+            ]
+          },
+          {
+            id: "ai-step-2",
+            title: "Classical Machine Learning Algorithms",
+            description: "Implement supervised and unsupervised models including linear regression, SVMs, decision trees, and clustering.",
+            skillsAcquired: ["Scikit-Learn", "Pandas", "Feature Engineering", "Data Modeling"],
+            estimatedWeeks: 8,
+            resources: [
+              { title: "Hands-on Machine Learning (Book)", type: "doc", url: "#" },
+              { title: "Machine Learning A-Z", type: "course", url: "#" }
+            ]
+          },
+          {
+            id: "ai-step-3",
+            title: "Deep Learning & Neural Networks",
+            description: "Understand feedforward networks, convolutional neural networks (CNNs), and recurrent networks (RNNs).",
+            skillsAcquired: ["PyTorch", "TensorFlow", "Neural Networks", "GPU Optimization"],
+            estimatedWeeks: 10,
+            resources: [
+              { title: "Deep Learning Specialization", type: "course", url: "#" },
+              { title: "PyTorch Tutorials", type: "doc", url: "#" }
+            ]
+          },
+          {
+            id: "ai-step-4",
+            title: "Large Language Models & Generative AI",
+            description: "Dive into the Transformer architecture, attention mechanisms, fine-tuning, and Retrieval-Augmented Generation (RAG).",
+            skillsAcquired: ["Transformers", "Hugging Face", "Vector Databases", "Prompt Engineering"],
+            estimatedWeeks: 8,
+            resources: [
+              { title: "Hugging Face NLP Course", type: "course", url: "#" },
+              { title: "Generative AI with LLMs", type: "course", url: "#" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "full-stack",
+        title: "Full-Stack Web Developer",
+        category: "Web Development",
+        description: "Build robust backend architectures and beautiful, responsive frontend interfaces using modern framework ecosystems.",
+        difficulty: "Intermediate",
+        estimatedTime: "4 - 6 Months",
+        steps: [
+          {
+            id: "fs-step-1",
+            title: "Modern Frontend Foundations",
+            description: "Build semantic interfaces with HTML5, CSS3, layout systems (Flexbox/Grid), and intermediate JavaScript ES6+.",
+            skillsAcquired: ["JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Git"],
+            estimatedWeeks: 4,
+            resources: [
+              { title: "MDN Web Docs - JavaScript Guide", type: "doc", url: "#" },
+              { title: "Tailwind CSS Documentation", type: "doc", url: "#" }
+            ]
+          },
+          {
+            id: "fs-step-2",
+            title: "React & Client State Architectures",
+            description: "Master React, component lifecycles, custom hooks, context, state libraries, and responsive client-side routing.",
+            skillsAcquired: ["React", "TypeScript", "Vite", "State Management", "Tailwind"],
+            estimatedWeeks: 6,
+            resources: [
+              { title: "React Dev Documentation", type: "doc", url: "#" },
+              { title: "Full Stack Open (Part 1-5)", type: "course", url: "#" }
+            ]
+          },
+          {
+            id: "fs-step-3",
+            title: "Backend Development & Server Frameworks",
+            description: "Develop RESTful APIs and GraphQL interfaces using Node.js, Express, middleware, and secure routing.",
+            skillsAcquired: ["Node.js", "Express", "REST APIs", "JSON Web Tokens", "Node Testing"],
+            estimatedWeeks: 6,
+            resources: [
+              { title: "Node.js Design Patterns", type: "doc", url: "#" },
+              { title: "The Modern GraphQL Tutorial", type: "course", url: "#" }
+            ]
+          },
+          {
+            id: "fs-step-4",
+            title: "Database Modeling & Cloud Operations",
+            description: "Model relationships in PostgreSQL, configure Redis caches, and deploy multi-container apps to cloud hosts.",
+            skillsAcquired: ["PostgreSQL", "Prisma ORM", "Redis", "Docker", "AWS/Cloud Run"],
+            estimatedWeeks: 6,
+            resources: [
+              { title: "PostgreSQL Tutorial for Beginners", type: "course", url: "#" },
+              { title: "Docker Deep Dive", type: "course", url: "#" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "cyber-sec",
+        title: "Cyber Security Specialist",
+        category: "Security",
+        description: "Protect critical digital infrastructure, conduct penetration testing, and model threat vectors against cyber attacks.",
+        difficulty: "Advanced",
+        estimatedTime: "5 - 8 Months",
+        steps: [
+          {
+            id: "sec-step-1",
+            title: "Computer Networking & Linux Architectures",
+            description: "Gain deep understanding of OSI model, routing protocols, subnetting, DNS, and Linux terminal administration.",
+            skillsAcquired: ["Linux Admin", "TCP/IP Suite", "Bash Scripting", "Firewall Rules"],
+            estimatedWeeks: 5,
+            resources: [
+              { title: "CompTIA Network+ Training", type: "course", url: "#" },
+              { title: "Linux Command Line Bible", type: "doc", url: "#" }
+            ]
+          },
+          {
+            id: "sec-step-2",
+            title: "Ethical Hacking & Penetration Testing",
+            description: "Learn systematic vulnerability assessment, port scanning, payload injection, and social engineering models.",
+            skillsAcquired: ["Nmap", "Wireshark", "Metasploit", "Burp Suite", "Kali Linux"],
+            estimatedWeeks: 8,
+            resources: [
+              { title: "Practical Ethical Hacking Course", type: "course", url: "#" },
+              { title: "OWASP Top 10 Guides", type: "doc", url: "#" }
+            ]
+          },
+          {
+            id: "sec-step-3",
+            title: "Defense Architecture & Incident Response",
+            description: "Configure Intrusion Detection Systems (IDS/IPS), parse security audit logs, and establish security compliance policies.",
+            skillsAcquired: ["SIEM Tools", "Snort", "Vulnerability Scanning", "Threat Hunting"],
+            estimatedWeeks: 7,
+            resources: [
+              { title: "Blue Team Handbook", type: "doc", url: "#" },
+              { title: "CompTIA Security+ Guide", type: "course", url: "#" }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const PROJECT_RECOMMENDATIONS = [
+      {
+        id: "proj-1",
+        title: "Context-Aware AI Document Summarizer",
+        difficulty: "Medium",
+        estimatedHours: 40,
+        description: "A full-stack web application that allows users to upload PDF manuals, textbooks, or research papers, and chat with them dynamically using custom embedding spaces and Vector indexes.",
+        skillsLearned: ["React", "Python", "LangChain", "Pinecone Vector DB", "FastAPI"],
+        architecture: [
+          "Frontend dashboard with file upload and live chat window.",
+          "FastAPI server receiving files and processing via PyPDF.",
+          "Chunking logic and embedding generation via HuggingFace or OpenAI APIs.",
+          "Similarity matching query routing through Pinecone Database."
+        ],
+        userStories: [
+          "User can upload a file up to 20MB safely.",
+          "User sees visual status indicators while vector index compiles.",
+          "User can ask contextual questions and get matched source reference paragraphs."
+        ]
+      },
+      {
+        id: "proj-2",
+        title: "High-Performance Crypto Trading Simulator",
+        difficulty: "Hard",
+        estimatedHours: 65,
+        description: "Build a real-time tracking dashboard and mock order books that simulates high-frequency algorithmic trade execution based on live WebSocket streams.",
+        skillsLearned: ["TypeScript", "React", "Node.js", "WebSockets", "Recharts", "Redis"],
+        architecture: [
+          "Low-latency React chart utilizing Recharts for canvas canvas rendering.",
+          "Backend node proxy pooling real-time prices from Binance or Coinbase public API.",
+          "In-memory Redis caching for local transaction records and simulated wallets.",
+          "Event-driven alerts triggered by server logic for specific volatility events."
+        ],
+        userStories: [
+          "User can create custom trading bots with basic rules (e.g., SMA crossover).",
+          "User sees live balance updates updating on a fraction-of-a-second tick rate.",
+          "User can check historic return performance logs visualized in clean line charts."
+        ]
+      },
+      {
+        id: "proj-3",
+        title: "Decentralized Key-Value Storage & Auth Engine",
+        difficulty: "Hard",
+        estimatedHours: 80,
+        description: "Create a peer-to-peer distributed server network implementing the Raft Consensus Protocol to safely share user session data and system configuration without single points of failure.",
+        skillsLearned: ["Go/Rust", "System Design", "Networking Protocols", "Cryptography", "Raft Consensus"],
+        architecture: [
+          "P2P networking listener using custom RPC packets over TCP.",
+          "Raft state machine handling leader election, log replication, and client commits.",
+          "Web interface dashboard displaying current cluster node health and network topology graphs."
+        ],
+        userStories: [
+          "User can query any active node to write a key-value auth token.",
+          "If the leader node is killed, user observes automatic failover and election of a new leader in <500ms.",
+          "Consensus is strictly enforced across three concurrent local node containers."
+        ]
+      },
+      {
+        id: "proj-4",
+        title: "Clean Energy Smart Grid Monitor",
+        difficulty: "Medium",
+        estimatedHours: 35,
+        description: "Create an interactive monitoring dashboard designed for clean energy grids that aggregates power production from solar, wind, and battery assets, featuring predictive battery drain warnings.",
+        skillsLearned: ["React", "Tailwind CSS", "D3.js", "Data Visualization", "Heuristic Forecasting"],
+        architecture: [
+          "Dynamic bento-grid dashboard highlighting energy inputs and grid storage status.",
+          "Custom interactive D3 time-series graphs with smooth drag-and-zoom controls.",
+          "Local calculation module mimicking grid fluctuations and dynamic weather parameters."
+        ],
+        userStories: [
+          "User can adjust solar efficiency parameters and observe real-time storage estimations.",
+          "User receives predictive alert cards when battery stores fall below 15% threshold.",
+          "User can toggle between dark, power-saving mode and clean laboratory grid styling."
+        ]
+      }
+    ];
+
+    const RESUME_TEMPLATES = {
+      junior: `Name: Alex Rivers\nTitle: Aspiring Frontend Engineer\nSkills: HTML, CSS, JavaScript, React\nExperience:\n- Built a series of simple landing pages and static web checklists using basic templates.\n- Resolved UI alignment bug tickets under direct supervision of developer mentor.\n- Configured some basic React state trees inside local client components.`,
+      mid: `Name: Morgan Devlin\nTitle: Mid-Level Fullstack Developer\nSkills: JavaScript, React, Node.js, Express, Postgres, Tailwind, Git\nExperience:\n- Spearheaded development of core modular client-side components across three high-traffic applications.\n- Designed responsive PostgreSQL database relationships and linked Node API routing middleware.\n- Reduced asset package sizes by 20% by implementing customized Vite asset compile presets.`,
+      senior: `Name: Dana Vance\nTitle: Senior Cloud Architect\nSkills: AWS, Kubernetes, Terraform, Docker, Python, Go, CI/CD Pipelines, PostgreSQL\nExperience:\n- Managed zero-downtime container updates and architected cluster configurations across five global regions.\n- Automated infrastructure-as-code provisioning using strict modular Terraform definitions.\n- Optimized high-frequency Python background processing jobs, decreasing memory leak overhead rates by 35%.`
+    };
+
+    // --- APPLICATION STATE VARIABLES ---
+    let onboardingData = {
+      experience: "Junior",
+      role: "Frontend Engineer",
+      skills: ["React", "TypeScript"]
+    };
+    
+    let modalActiveStep = 1;
+    let completedStepsState = {}; // roadmap nodes completed status { 'ai-step-1': true }
+    
+    let activeRoadmapId = "ai-engineer";
+    let activeRoadmapStepIndex = 0;
+    
+    let activeProjectId = "proj-1";
+    let currentProjectDifficultyFilter = "All";
+    
+    // --- ONBOARDING MODAL ENGINE ---
+    function openModal() {
+      document.getElementById("onboarding-modal").classList.remove("hidden");
+      modalActiveStep = 1;
+      updateModalUI();
+    }
+    
+    function closeModal() {
+      document.getElementById("onboarding-modal").classList.add("hidden");
+    }
+    
+    function selectSeniority(level) {
+      onboardingData.experience = level;
+      // Style active button
+      document.querySelectorAll(".onboard-seniority-btn").forEach(btn => {
+        const span = btn.querySelector("span");
+        const icon = btn.querySelector("i");
+        if (span.innerText.includes(level)) {
+          btn.className = "onboard-seniority-btn w-full text-left p-3.5 rounded-xl border border-blue-400 bg-white/5 text-white flex items-center justify-between transition-all";
+          //icon.className = "w-4 h-4 text-blue-400 fill-blue-400";
+        } else {
+          btn.className = "onboard-seniority-btn w-full text-left p-3.5 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all";
+          //icon.className = "w-4 h-4 text-slate-600";
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function selectSpecialty(track) {
+      onboardingData.role = track;
+      // Style active button
+      document.querySelectorAll(".onboard-specialty-btn").forEach(btn => {
+        const span = btn.querySelector("span");
+        const icon = btn.querySelector("i");
+        if (span.innerText === track) {
+          btn.className = "onboard-specialty-btn w-full text-left p-3 rounded-xl border border-blue-400 bg-white/5 text-white flex items-center justify-between transition-all";
+          //icon.className = "w-4 h-4 text-blue-400";
+        } else {
+          btn.className = "onboard-specialty-btn w-full text-left p-3 rounded-xl border border-white/5 bg-[#050505]/40 text-slate-400 hover:border-white/15 flex items-center justify-between transition-all";
+          //icon.className = "w-4 h-4 text-slate-600";
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function toggleFamiliarTech(tech, element) {
+      const index = onboardingData.skills.indexOf(tech);
+      if (index > -1) {
+        onboardingData.skills.splice(index, 1);
+        element.className = "p-2.5 rounded-lg border text-xs font-mono text-slate-500 bg-[#050505]/40 border-white/5 hover:text-slate-300 relative transition-all";
+        const dot = element.querySelector(".active-tech-dot");
+        if (dot) dot.remove();
+      } else {
+        onboardingData.skills.push(tech);
+        element.className = "p-2.5 rounded-lg border text-xs font-mono border-blue-400 bg-white/5 text-blue-300 font-bold relative transition-all";
+        const dot = document.createElement("span");
+        dot.className = "active-tech-dot absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-blue-400";
+        element.appendChild(dot);
+      }
+    }
+
+    function updateModalUI() {
+      // Toggle steps divs
+      document.getElementById("modal-step-1").classList.add("hidden");
+      document.getElementById("modal-step-2").classList.add("hidden");
+      document.getElementById("modal-step-3").classList.add("hidden");
+      document.getElementById(`modal-step-${modalActiveStep}`).classList.remove("hidden");
+
+      // Update indicators
+      for (let i = 1; i <= 3; i++) {
+        const ind = document.getElementById(`modal-indicator-${i}`);
+        if (i <= modalActiveStep) {
+          ind.className = "h-1 flex-1 rounded-full transition-all duration-300 bg-blue-400";
+        } else {
+          ind.className = "h-1 flex-1 rounded-full transition-all duration-300 bg-white/5";
+        }
+      }
+
+      // Back button
+      if (modalActiveStep > 1) {
+        document.getElementById("modal-back-btn").classList.remove("hidden");
+      } else {
+        document.getElementById("modal-back-btn").classList.add("hidden");
+      }
+
+      // Finish / Next button text
+      const nextBtn = document.getElementById("modal-next-btn");
+      if (modalActiveStep === 3) {
+        nextBtn.innerHTML = `Finish Consultation <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>`;
+      } else {
+        nextBtn.innerHTML = `Next <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>`;
+      }
+      document.getElementById("onboarding-step-text").innerText = `STEP ${modalActiveStep} OF 3`;
+      lucide.createIcons();
+    }
+
+    function nextStep() {
+      if (modalActiveStep < 3) {
+        modalActiveStep++;
+        updateModalUI();
+      } else {
+        // Finished Onboarding!
+        closeModal();
+        activateOnboardingResult();
+      }
+    }
+
+    function previousStep() {
+      if (modalActiveStep > 1) {
+        modalActiveStep--;
+        updateModalUI();
+      }
+    }
+
+    // --- ONBOARDING ACTIVE RESULTS ENGINE ---
+    function activateOnboardingResult() {
+      document.getElementById("onboarding-advice-banner").classList.remove("hidden");
+      document.getElementById("banner-exp").innerText = `${onboardingData.experience} Level`;
+      document.getElementById("banner-role").innerText = onboardingData.role;
+      document.getElementById("banner-skills").innerText = onboardingData.skills.length > 0 
+        ? onboardingData.skills.join(", ") 
+        : "Standard software profiles";
+      
+      // Select advice based on Seniority
+      let adviceText = "";
+      if (onboardingData.experience === "Junior") {
+        adviceText = "Focus heavily on foundational project building, clean folder structure curation, and mastering version control standards. Recruiters look for complete development logs and active test-driven stories.";
+      } else if (onboardingData.experience === "Mid-Level") {
+        adviceText = "Transition from simple feature outputs to performance optimization, static strict compiling, and API latency improvements. Detail specific system bottlenecks you solved in prior projects.";
+      } else if (onboardingData.experience === "Senior") {
+        adviceText = "Focus your narratives on high-availability container structures, infrastructure-as-code automation, and team process architecture. Highlight clear infrastructure latency and financial cost savings.";
+      } else {
+        adviceText = "Emphasize technology-strategy scaling alignments, security audit compliance records, cross-functional organization mentorship pipelines, and strict high-impact ownership words.";
+      }
+      document.getElementById("banner-advice-text").innerText = adviceText;
+
+      // Scroll to active banner section smoothly
+      document.getElementById("onboarding-advice-banner").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeAdviceBanner() {
+      document.getElementById("onboarding-advice-banner").classList.add("hidden");
+    }
+
+    // --- RESUME ANALYZER ENGINE ---
+    function fillResumeTemplate(level) {
+      document.getElementById("resume-input").value = RESUME_TEMPLATES[level];
+    }
+
+    function analyzeResumeText(text) {
+      const cleanText = text.toLowerCase();
+      let score = 55;
+      const strengths = [];
+      const gaps = [];
+      const recommendations = [];
+      let roleMatch = "Software Engineer Core";
+
+      const hasFrontend = ["react", "vue", "angular", "html", "css", "tailwind", "typescript", "javascript"].some(s => cleanText.includes(s));
+      const hasBackend = ["node", "express", "django", "fastapi", "spring", "golang", "postgres", "sql", "mongodb"].some(s => cleanText.includes(s));
+      const hasAI = ["python", "pytorch", "tensorflow", "ml", "machine learning", "deep learning", "transformers", "llm", "ai"].some(s => cleanText.includes(s));
+      const hasDevops = ["docker", "kubernetes", "aws", "gcp", "ci/cd", "pipelines", "actions"].some(s => cleanText.includes(s));
+
+      if (hasAI && hasBackend) {
+        roleMatch = "AI Platform Engineer";
+        score += 15;
+      } else if (hasAI) {
+        roleMatch = "AI / Machine Learning Engineer";
+        score += 10;
+      } else if (hasFrontend && hasBackend) {
+        roleMatch = "Full-Stack Web Developer";
+        score += 12;
+      } else if (hasFrontend) {
+        roleMatch = "Frontend Engineer";
+        score += 5;
+      } else if (hasBackend) {
+        roleMatch = "Backend Engineer";
+        score += 8;
+      }
+
+      if (cleanText.includes("react") || cleanText.includes("vue") || cleanText.includes("typescript")) {
+        score += 5;
+        strengths.push("Modern Client-Side Frameworks (React/TypeScript)");
+      }
+      if (cleanText.includes("python") || cleanText.includes("pytorch") || cleanText.includes("pandas")) {
+        score += 6;
+        strengths.push("High-Performance Data Stack & Python Operations");
+      }
+      if (cleanText.includes("sql") || cleanText.includes("postgres") || cleanText.includes("database")) {
+        score += 5;
+        strengths.push("Relational Data Modeling & Query Design");
+      }
+      if (cleanText.includes("docker") || cleanText.includes("aws") || cleanText.includes("kubernetes")) {
+        score += 6;
+        strengths.push("Cloud Native Infrastructure & Containers");
+      }
+      if (cleanText.includes("lead") || cleanText.includes("managed") || cleanText.includes("architected") || cleanText.includes("optimized")) {
+        score += 8;
+        strengths.push("High-Impact Ownership & System Architecture Words");
+      } else {
+        gaps.push({
+          skill: "Action-Oriented Leadership Verbs",
+          impact: "Medium",
+          description: "Using passive voice in task descriptions decreases modern HR parser parsing efficiency."
+        });
+      }
+
+      if (!hasDevops) {
+        gaps.push({
+          skill: "Cloud native orchestration (Docker / AWS)",
+          impact: "High",
+          description: "Modern operations expect deployment-ready code container structures."
+        });
+        recommendations.push("Add a Dockerfile to your existing projects and mention your deployment targets (AWS/GCP).");
+      }
+      if (!cleanText.includes("typescript") && hasFrontend) {
+        gaps.push({
+          skill: "Strong TypeScript static typing",
+          impact: "High",
+          description: "Enterprise software systems are standardizing code bases to strict TS compiles."
+        });
+        recommendations.push("Refactor a core project script from JS to strict TypeScript compile guidelines.");
+      }
+      if (!cleanText.includes("test") && !cleanText.includes("jest") && !cleanText.includes("testing")) {
+        gaps.push({
+          skill: "Automated Software Verification (Jest/PyTest)",
+          impact: "Medium",
+          description: "No unit or integration test assertions are referenced in any core projects."
+        });
+        recommendations.push("Add a section highlighting test coverage rates or testing libraries utilized.");
+      }
+
+      if (strengths.length === 0) {
+        strengths.push("Baseline Technical Foundations & Project Literacy");
+      }
+      if (recommendations.length === 0) {
+        recommendations.push("Your resume is extremely strong! Focus on tailoring project briefs directly to the target companies.");
+      }
+
+      score = Math.min(score, 98);
+
+      return {
+        score,
+        roleMatch,
+        strengths,
+        gaps,
+        recommendations
+      };
+    }
+
+    
+
+    // --- ROADMAP GENERATOR ENGINE ---
+    function renderRoadmapSelector() {
+      const container = document.getElementById("path-list");
+      container.innerHTML = "";
+      
+      CAREER_PATHS.forEach(path => {
+        const isActive = path.id === activeRoadmapId;
+        const card = document.createElement("button");
+        card.onclick = () => selectRoadmap(path.id);
+        
+        // Count complete nodes for this path
+        const stepsCount = path.steps.length;
+        let completeCount = 0;
+        path.steps.forEach(s => {
+          if (completedStepsState[s.id]) completeCount++;
+        });
+        const percent = stepsCount > 0 ? Math.round((completeCount / stepsCount) * 100) : 0;
+
+        card.className = `w-full text-left p-4 rounded-xl border transition-all cursor-pointer block relative overflow-hidden group ${
+          isActive
+            ? "border-blue-500/40 bg-blue-500/5 shadow-md shadow-blue-500/5"
+            : "border-white/5 bg-white/[0.01] hover:border-white/20 hover:bg-white/[0.03]"
+        }`;
+        
+        card.innerHTML = `
+          ${isActive ? '<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-400"></div>' : ''}
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-mono text-blue-400 font-semibold tracking-wider">${path.category.toUpperCase()}</span>
+            <span class="text-[10px] font-mono text-slate-500">${path.difficulty}</span>
+          </div>
+          <h4 class="font-display font-bold text-white mt-1 group-hover:text-blue-400 transition-colors">${path.title}</h4>
+          <p class="text-xs text-gray-400 mt-2 line-clamp-2 leading-relaxed">${path.description}</p>
+          <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-500">
+            <span class="flex items-center gap-1">
+              <i data-lucide="clock" class="w-3 h-3"></i> ${path.estimatedTime}
+            </span>
+            <span class="font-mono text-blue-400 font-medium">${completeCount}/${stepsCount} Steps Done (${percent}%)</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function renderTimelineAndActiveStep() {
+      const activePath = CAREER_PATHS.find(p => p.id === activeRoadmapId);
+      if (!activePath) return;
+
+      // Draw steps list (middle column)
+      const container = document.getElementById("timeline-container");
+      container.innerHTML = "";
+
+      activePath.steps.forEach((step, idx) => {
+        const isActive = idx === activeRoadmapStepIndex;
+        const isCompleted = !!completedStepsState[step.id];
+        
+        const stepCard = document.createElement("div");
+        stepCard.onclick = () => selectRoadmapStep(idx);
+        stepCard.className = `relative p-4 rounded-xl border cursor-pointer transition-all ${
+          isActive
+            ? "border-blue-400 bg-white/[0.03] shadow-md shadow-blue-500/5"
+            : "border-white/5 bg-white/[0.01] hover:border-white/10"
+        }`;
+
+        stepCard.innerHTML = `
+          <!-- Dot node line connection -->
+          <div class="absolute -left-[23px] top-1/2 -translate-y-1/2 flex items-center justify-center z-10">
+            <button onclick="toggleStepCompleted('${step.id}', event)" class="w-5 h-5 rounded-full bg-[#050505] border border-white/15 hover:border-blue-400 flex items-center justify-center transition-colors cursor-pointer">
+              ${isCompleted 
+                ? '<i data-lucide="check" class="w-3.5 h-3.5 text-blue-400 font-bold"></i>' 
+                : `<div class="w-2 h-2 rounded-full ${isActive ? 'bg-blue-400 animate-pulse' : 'bg-slate-700'}"></div>`
+              }
+            </button>
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[9px] font-mono text-slate-500">STAGE 0${idx + 1} • ${step.estimatedWeeks} WEEKS</span>
+          </div>
+          <h5 class="font-display font-bold text-sm ${isActive ? 'text-blue-300' : 'text-white'}">${step.title}</h5>
+          <p class="text-xs text-gray-400 mt-1 line-clamp-1">${step.description}</p>
+        `;
+        container.appendChild(stepCard);
+      });
+
+      // Update right-side specifications card based on active step
+      const currentStep = activePath.steps[activeRoadmapStepIndex];
+      const isCompleted = !!completedStepsState[currentStep.id];
+      const rightPanel = document.getElementById("milestone-details-container");
+
+      let skillsBadges = currentStep.skillsAcquired.map(skill => {
+        return `<span class="text-[10px] font-mono bg-blue-500/10 border border-blue-500/20 text-blue-300 px-2 py-0.5 rounded-md">${skill}</span>`;
+      }).join("");
+
+      let docLinks = currentStep.resources.map(res => {
+        return `
+          <a href="${res.url}" class="flex items-center justify-between p-2.5 rounded-lg border border-white/5 bg-white/[0.02] hover:border-blue-400 hover:bg-white/[0.05] transition-colors group">
+            <div class="flex items-center gap-2">
+              <i data-lucide="book-open" class="w-3.5 h-3.5 text-blue-400 shrink-0"></i>
+              <span class="text-xs text-slate-300 group-hover:text-blue-300 transition-colors truncate max-w-[180px]">${res.title}</span>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-600 group-hover:text-white transition-colors shrink-0"></i>
+          </a>
+        `;
+      }).join("");
+
+      rightPanel.innerHTML = `
+        <div class="flex items-center justify-between pb-4 border-b border-white/5">
+          <div>
+            <span class="text-[10px] font-mono text-blue-400 font-semibold tracking-wider">MILESTONE DEFINITION</span>
+            <h4 class="font-display font-bold text-lg text-white mt-0.5">${currentStep.title}</h4>
+          </div>
+        </div>
+
+        <p class="text-xs text-gray-400 mt-4 leading-relaxed font-sans">${currentStep.description}</p>
+
+        <div class="mt-5">
+          <span class="text-[10px] font-mono text-slate-500 tracking-wider block mb-2 uppercase">Skills Acquired:</span>
+          <div class="flex flex-wrap gap-1.5">${skillsBadges}</div>
+        </div>
+
+        <div class="mt-5">
+          <span class="text-[10px] font-mono text-slate-500 tracking-wider block mb-2 uppercase">Official Learning Materials:</span>
+          <div class="space-y-2">${docLinks}</div>
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-white/5">
+          <button onclick="toggleStepCompleted('${currentStep.id}', event)" class="w-full py-2.5 rounded-xl text-center font-display font-semibold text-xs transition-all cursor-pointer ${
+            isCompleted
+              ? "bg-transparent border border-blue-400/40 text-blue-400 hover:bg-white/5"
+              : "bg-white hover:bg-blue-400 text-black shadow-md shadow-white/5"
+          }">
+            ${isCompleted ? "✓ Completed! Clear Progress" : "Complete Node"}
+          </button>
+        </div>
+      `;
+
+      // Update progress variables
+      const totalStepsInPath = activePath.steps.length;
+      let completedInPath = 0;
+      activePath.steps.forEach(s => {
+        if (completedStepsState[s.id]) completedInPath++;
+      });
+      const progressPercent = totalStepsInPath > 0 ? Math.round((completedInPath / totalStepsInPath) * 100) : 0;
+
+      // Update indicators
+      document.getElementById("roadmap-nodes-text").innerText = `${completedInPath} / ${totalStepsInPath} Nodes Mastered`;
+      document.getElementById("roadmap-progress-text").innerText = `${progressPercent}%`;
+
+      const progressCircle = document.getElementById("roadmap-progress-circle");
+      const circ = 2 * Math.PI * 22; // 138.2
+      progressCircle.style.strokeDashoffset = circ * (1 - progressPercent / 100);
+
+      lucide.createIcons();
+    }
+
+    function selectRoadmap(pathId) {
+      activeRoadmapId = pathId;
+      activeRoadmapStepIndex = 0;
+      renderRoadmapSelector();
+      renderTimelineAndActiveStep();
+    }
+
+    function selectRoadmapStep(index) {
+      activeRoadmapStepIndex = index;
+      renderTimelineAndActiveStep();
+    }
+
+    function toggleStepCompleted(stepId, event) {
+      if (event) event.stopPropagation();
+      completedStepsState[stepId] = !completedStepsState[stepId];
+      renderRoadmapSelector();
+      renderTimelineAndActiveStep();
+    }
+
+    // --- PROJECT RECOMMENDER ENGINE ---
+    function renderProjectRecommendations() {
+      const query = document.getElementById("project-search-input").value.toLowerCase().trim();
+      const container = document.getElementById("project-list");
+      container.innerHTML = "";
+
+      const filtered = PROJECT_RECOMMENDATIONS.filter(proj => {
+        // Search filter
+        const matchesSearch = query === "" || 
+          proj.title.toLowerCase().includes(query) || 
+          proj.description.toLowerCase().includes(query) || 
+          proj.skillsLearned.some(s => s.toLowerCase().includes(query));
+
+        // Difficulty filter
+        const matchesDiff = currentProjectDifficultyFilter === "All" || proj.difficulty === currentProjectDifficultyFilter;
+
+        return matchesSearch && matchesDiff;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 border border-white/5 rounded-xl bg-white/[0.01]">
+            <p class="text-xs text-slate-500">No projects match your current filters.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(proj => {
+        const isSelected = proj.id === activeProjectId;
+        const itemCard = document.createElement("button");
+        itemCard.onclick = () => selectProjectSpec(proj.id);
+        
+        const badgeColor = proj.difficulty === "Hard" 
+          ? "border-red-950 bg-red-950/30 text-red-400" 
+          : proj.difficulty === "Medium"
+          ? "border-blue-950 bg-blue-950/30 text-blue-400"
+          : "border-emerald-950 bg-emerald-950/30 text-emerald-400";
+
+        const skillBadges = proj.skillsLearned.map(skill => {
+          return `<span class="text-[9px] font-mono bg-white/5 text-slate-400 border border-white/5 px-1.5 py-0.5 rounded">${skill}</span>`;
+        }).join("");
+
+        itemCard.className = `w-full text-left p-5 rounded-xl border transition-all cursor-pointer block relative ${
+          isSelected
+            ? "border-blue-400/40 bg-white/[0.03] shadow-md shadow-blue-500/5"
+            : "border-white/5 bg-white/[0.01] hover:border-white/15"
+        }`;
+
+        itemCard.innerHTML = `
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[9px] font-mono border px-2 py-0.5 rounded ${badgeColor}">${proj.difficulty} Blueprint</span>
+            <span class="text-[10px] font-mono text-slate-500">${proj.estimatedHours} EST. HOURS</span>
+          </div>
+          <h4 class="font-display font-bold text-sm text-white">${proj.title}</h4>
+          <p class="text-xs text-gray-400 mt-2 line-clamp-2 leading-relaxed">${proj.description}</p>
+          <div class="mt-4 flex flex-wrap gap-1.5">${skillBadges}</div>
+        `;
+        container.appendChild(itemCard);
+      });
+      
+      // Update selected project display spec panel
+      renderSelectedProjectSpec();
+    }
+
+    function renderSelectedProjectSpec() {
+      const selectedProject = PROJECT_RECOMMENDATIONS.find(p => p.id === activeProjectId) || PROJECT_RECOMMENDATIONS[0];
+      const panel = document.getElementById("project-spec-container");
+
+      const archMarkup = selectedProject.architecture.map((item, idx) => {
+        return `
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-white/[0.01] border border-white/5">
+            <span class="text-xs font-mono font-bold text-blue-400 shrink-0">0${idx + 1}</span>
+            <span class="text-xs text-slate-300 leading-normal">${item}</span>
+          </div>
+        `;
+      }).join("");
+
+      const storiesMarkup = selectedProject.userStories.map(story => {
+        return `
+          <div class="flex items-start gap-2.5 text-xs text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-400/60 shrink-0 mt-1.5"></span>
+            <span class="leading-relaxed">${story}</span>
+          </div>
+        `;
+      }).join("");
+
+      panel.innerHTML = `
+        <!-- Title & Stats -->
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between pb-5 border-b border-white/5 gap-4">
+          <div>
+            <span class="text-[10px] font-mono text-blue-400 tracking-wider block">ARCHITECTURAL SPECIFICATION</span>
+            <h3 class="font-display font-extrabold text-xl text-white mt-1">${selectedProject.title}</h3>
+          </div>
+          <button onclick="copyBlueprintBrief()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.02] hover:border-blue-400/40 hover:bg-white/[0.05] text-xs text-slate-400 hover:text-white transition-all cursor-pointer font-sans shrink-0 self-start">
+            <i id="copy-icon" data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span id="copy-btn-text">Copy Blueprint Brief</span>
+          </button>
+        </div>
+
+        <!-- Core Description -->
+        <p class="text-xs text-gray-400 mt-5 leading-relaxed">${selectedProject.description}</p>
+
+        <!-- Components Structure -->
+        <div class="mt-6">
+          <h5 class="text-[10px] font-mono text-blue-400 tracking-wider mb-3 flex items-center gap-1.5 uppercase">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            Infrastructure & Component Layout
+          </h5>
+          <div class="grid grid-cols-1 gap-2">${archMarkup}</div>
+        </div>
+
+        <!-- User Stories -->
+        <div class="mt-6">
+          <h5 class="text-[10px] font-mono text-blue-400 tracking-wider mb-3 flex items-center gap-1.5 uppercase">
+            <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+            Product User Stories (Testing Assertions)
+          </h5>
+          <div class="space-y-2">${storiesMarkup}</div>
+        </div>
+
+        <!-- Specifications Footer -->
+        <div class="pt-6 mt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-500 font-mono">EST. EFFORT:</span>
+            <span class="text-xs font-bold text-white">${selectedProject.estimatedHours} Hours</span>
+          </div>
+          
+          <button onclick="copyBlueprintBrief()" class="w-full sm:w-auto py-2.5 px-6 rounded-xl bg-white hover:bg-blue-400 text-black font-display font-semibold text-xs shadow-md shadow-white/5 transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5">
+            Claim Brief Blueprint
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    function selectProjectSpec(projId) {
+      activeProjectId = projId;
+      renderProjectRecommendations();
+    }
+
+    function filterProjects() {
+      renderProjectRecommendations();
+    }
+
+    function setDifficultyFilter(diff) {
+      currentProjectDifficultyFilter = diff;
+      
+      // Update buttons style
+      document.querySelectorAll(".diff-btn").forEach(btn => {
+        if (btn.innerText === diff) {
+          btn.className = "diff-btn px-4 py-2 text-xs font-display font-medium rounded-lg transition-colors cursor-pointer bg-blue-500/10 text-blue-300 border border-blue-500/30";
+        } else {
+          btn.className = "diff-btn px-4 py-2 text-xs font-display font-medium rounded-lg transition-colors cursor-pointer text-slate-500 hover:text-slate-300";
+        }
+      });
+
+      renderProjectRecommendations();
+    }
+
+    function copyBlueprintBrief() {
+      const selectedProject = PROJECT_RECOMMENDATIONS.find(p => p.id === activeProjectId) || PROJECT_RECOMMENDATIONS[0];
+      const textToCopy = `=== PROJECT BLUEPRINT BRIEF ===\n\nTitle: ${selectedProject.title}\nDifficulty: ${selectedProject.difficulty}\nEstimated Effort: ${selectedProject.estimatedHours} Hours\n\nDescription:\n${selectedProject.description}\n\nInfrastructure Layout:\n${selectedProject.architecture.join('\n')}\n\nUser Stories & Testing:\n${selectedProject.userStories.join('\n')}`;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const textSpan = document.getElementById("copy-btn-text");
+        const icon = document.getElementById("copy-icon");
+        
+        textSpan.innerText = "Brief Copied!";
+        //icon.className = "w-3.5 h-3.5 text-emerald-400";
+        
+        setTimeout(() => {
+          textSpan.innerText = "Copy Blueprint Brief";
+          //icon.className = "w-3.5 h-3.5";
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+
+    // --- NEWSLETTER SUBMISSION ENGINE ---
+    function handleNewsletterSubmit(event) {
+      event.preventDefault();
+      document.getElementById("newsletter-form").classList.add("hidden");
+      document.getElementById("newsletter-success-alert").classList.remove("hidden");
+    }
+
+    // --- INITIALIZATION MOUNT ---
+    window.addEventListener("DOMContentLoaded", () => {
+      // Initialize lucide icons
+      lucide.createIcons();
+
+      // Load initial path data structures
+      selectRoadmap("ai-engineer");
+      
+      // Load initial project specifications
+      selectProjectSpec("proj-1");
+    });
+  </script>
+  <div class="chat-container">
+    <h2>Ask Your AI Mentor</h2>
+
+    <textarea
+        id="question"
+        placeholder="Ask anything about your career..."
+    ></textarea>
+
+    <button onclick="askAI()">
+        Ask AI
+    </button>
+
+    <div id="response"></div>
+</div>
+<script>
+async function askAI(){
+
+    let question =
+        document.getElementById("question").value;
+
+    let response =
+        await fetch("/ask",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                question:question
+            })
+        });
+
+    let data =
+        await response.json();
+
+    document.getElementById("response")
+        .innerText = data.answer;
+}
+</script>
+<script>
+async function askAI() {
+    const question = document.querySelector("textarea").value;
+
+    const response = await fetch("/ask", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            question: question
+        })
+    });
+
+    const data = await response.json();
+
+    alert(data.answer);
+}
+</script>
+<script>
+async function askAI() {
+    const question =
+        document.getElementById("resume-input").value;
+
+    const response = await fetch("/ask", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            question: question
+        })
+    });
+
+    const data = await response.json();
+
+    alert(data.answer);
+}
+</script>
+</body>
+</html>
