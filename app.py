@@ -30,20 +30,22 @@ def ask():
     question = data["question"]
 
     prompt = f"""
-    You are SkillSwap AI, an expert career mentor.
+    You are an expert ATS and career mentor.
 
-    Student input:
+    Analyze this resume:
+
     {question}
 
-    Provide:
+    Return in this format:
 
-    1. Current strengths
-    2. Missing skills
-    3. 3-month learning roadmap
-    4. 3 project ideas
-    5. Career recommendations
+    ATS Score: X/100
 
-    Use headings and bullet points.
+    1. Current Strengths
+    2. Missing Skills
+    3. 3-Month Learning Roadmap
+    4. Project Ideas
+    5. Career Recommendations
+
     Keep the response concise.
     """
 

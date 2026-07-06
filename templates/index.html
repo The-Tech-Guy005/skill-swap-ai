@@ -215,7 +215,13 @@
                 <i data-lucide="cpu" class="w-4 h-4"></i>
                 <span id="analysis-btn-text">Run Simulated AI Analysis</span>
               </button>
+              <div id="ats-score-box">
+                    ATS Score: Waiting...
+              </div>
               <div id="response-box"></div>
+              <button id="download-btn" onclick="downloadReport()">
+                    Download Report
+              </button>
             </div>
             
 
@@ -1474,6 +1480,10 @@
         Ask AI
     </button>
 
+    <div id="ats-score-box">
+        ATS Score: Waiting...
+    </div>
+
     <div id="response"></div>
 </div>
 <script>
@@ -1517,7 +1527,40 @@ async function askAI() {
     const data = await response.json();
 
     document.getElementById("response-box").innerHTML =
-    data.answer;
+       data.answer;
+
+    const match =
+       data.answer.match(/ATS Score:\s*(\d+)/);
+
+    if (match) {
+       document.getElementById(
+          "ats-score-box"
+        ).innerText =
+            "ATS Score: " + match[1] + "/100";
+}
+}
+function downloadReport() {
+
+    const report =
+        document.getElementById(
+            "response-box"
+        ).innerText;
+
+    const blob =
+        new Blob([report], {
+            type: "text/plain"
+        });
+
+    const a =
+        document.createElement("a");
+
+    a.href =
+        URL.createObjectURL(blob);
+
+    a.download =
+        "SkillSwap_Report.txt";
+
+    a.click();
 }
 </script>
 <script>
@@ -1539,6 +1582,13 @@ async function askAI() {
 
     document.getElementById("response-box").innerHTML =
        data.answer;
+
+    const match = data.answer.match(/ATS Score:\s*(\d+)\/100/);
+
+    if (match) {
+        document.getElementById("ats-score-box").innerText =
+            "ATS Score: " + match[1] + "/100";
+    }
 }
 </script>
 <script>

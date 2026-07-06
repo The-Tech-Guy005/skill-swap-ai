@@ -105,3 +105,28 @@ button{
     white-space: pre-wrap;
     min-height: 100px;
 }
+#ats-score-box{
+    margin-top:20px;
+    padding:20px;
+    background:#0f172a;
+    border-radius:16px;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    text-align:center;
+}
+#download-btn{
+    margin-top:20px;
+    padding:12px 25px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#download-btn:hover{
+    background:#1d4ed8;
+}
+
