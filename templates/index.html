@@ -215,6 +215,9 @@
                 <i data-lucide="cpu" class="w-4 h-4"></i>
                 <span id="analysis-btn-text">Run Simulated AI Analysis</span>
               </button>
+              <div id="loading">
+                  Analyzing Resume...
+              </div>
               <div id="ats-score-box">
                     ATS Score: Waiting...
               </div>
@@ -1470,32 +1473,15 @@
   </script>
 
 <script>
-async function askAI(){
 
-    let question =
-        document.getElementById("question").value;
-
-    let response =
-        await fetch("/ask",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-                question:question
-            })
-        });
-
-    let data =
-        await response.json();
-
-    document.getElementById("response")
-        .innerText = data.answer;
-}
 </script>
 <script>
 async function askAI() {
-    const question = document.querySelector("textarea").value;
+    
+    
+    document.getElementById("loading").style.display = "block";
+    
+    const question = document.getElementById("resume-input").value;
 
     const response = await fetch("/ask", {
         method: "POST",
@@ -1508,6 +1494,7 @@ async function askAI() {
     });
 
     const data = await response.json();
+    document.getElementById("loading").style.display = "none";
 
     document.getElementById("response-box").innerHTML =
        data.answer;
@@ -1548,6 +1535,7 @@ function downloadReport() {
 </script>
 <script>
 async function askAI() {
+    
     const question =
         document.getElementById("resume-input").value;
 

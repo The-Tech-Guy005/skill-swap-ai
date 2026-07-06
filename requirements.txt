@@ -23,6 +23,9 @@ Jinja2==3.1.6
 Markdown==3.10.2
 MarkupSafe==3.0.3
 packaging==26.2
+pdfminer.six==20260107
+pdfplumber==0.11.10
+pillow==12.3.0
 proto-plus==1.28.0
 protobuf==5.29.6
 pyasn1==0.6.3
@@ -32,6 +35,7 @@ pydantic==2.13.4
 pydantic_core==2.46.4
 pyparsing==3.3.2
 pypdf==6.14.2
+pypdfium2==5.11.0
 python-dotenv==1.2.2
 requests==2.34.2
 tqdm==4.68.3

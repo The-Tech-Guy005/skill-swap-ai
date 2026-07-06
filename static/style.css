@@ -129,4 +129,14 @@ button{
 #download-btn:hover{
     background:#1d4ed8;
 }
+#loading {
+    display: none;
+    color: #60a5fa;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 
