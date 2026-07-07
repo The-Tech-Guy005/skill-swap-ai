@@ -41,7 +41,7 @@
         
         <nav class="hidden md:flex items-center gap-8">
           <a href="#resume-section" class="text-xs font-mono text-slate-400 hover:text-white tracking-wider transition-colors">ATS ANALYZER</a>
-          <a href="#roadmap-section" class="text-xs font-mono text-slate-400 hover:text-white tracking-wider tracking-wider transition-colors">LEARNING ROADMAPS</a>
+          <a href="#roadmap-section" class="text-xs font-mono text-slate-400 hover:text-white tracking-wider transition-colors">LEARNING ROADMAPS</a>
           <a href="#projects-section" class="text-xs font-mono text-slate-400 hover:text-white tracking-wider transition-colors">PROJECT BLUEPRINTS</a>
         </nav>
         
@@ -1473,122 +1473,75 @@
   </script>
 
 <script>
+  // --- BACKEND-CONNECTED ATS ANALYSIS ENGINE ---
+  async function askAI() {
+    const questionEl = document.getElementById("resume-input");
+    const loadingEl = document.getElementById("loading");
+    const responseEl = document.getElementById("response-box");
+    const scoreEl = document.getElementById("ats-score-box");
 
-</script>
-<script>
-async function askAI() {
-    
-    
-    document.getElementById("loading").style.display = "block";
-    
-    const question = document.getElementById("resume-input").value;
+    const question = questionEl ? questionEl.value : "";
 
-    const response = await fetch("/ask", {
+    if (loadingEl) loadingEl.style.display = "block";
+
+    try {
+      const response = await fetch("/ask", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            question: question
-        })
-    });
+        body: JSON.stringify({ question })
+      });
 
-    const data = await response.json();
-    document.getElementById("loading").style.display = "none";
+      const data = await response.json();
 
-    document.getElementById("response-box").innerHTML =
-       data.answer;
+      if (responseEl) responseEl.innerHTML = data.answer;
 
-    const match =
-       data.answer.match(/ATS Score:\s*(\d+)/);
-
-    if (match) {
-       document.getElementById(
-          "ats-score-box"
-        ).innerText =
-            "ATS Score: " + match[1] + "/100";
-}
-}
-function downloadReport() {
-
-    const report =
-        document.getElementById(
-            "response-box"
-        ).innerText;
-
-    const blob =
-        new Blob([report], {
-            type: "text/plain"
-        });
-
-    const a =
-        document.createElement("a");
-
-    a.href =
-        URL.createObjectURL(blob);
-
-    a.download =
-        "SkillSwap_Report.txt";
-
-    a.click();
-}
-</script>
-<script>
-async function askAI() {
-    
-    const question =
-        document.getElementById("resume-input").value;
-
-    const response = await fetch("/ask", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            question: question
-        })
-    });
-
-    const data = await response.json();
-
-    document.getElementById("response-box").innerHTML =
-       data.answer;
-
-    const match = data.answer.match(/ATS Score:\s*(\d+)\/100/);
-
-    if (match) {
-        document.getElementById("ats-score-box").innerText =
-            "ATS Score: " + match[1] + "/100";
+      const match = data.answer.match(/ATS Score:\s*(\d+)(?:\/100)?/);
+      if (match && scoreEl) {
+        scoreEl.innerText = "ATS Score: " + match[1] + "/100";
+      }
+    } catch (err) {
+      if (responseEl) responseEl.innerHTML = "Something went wrong while analyzing your resume. Please try again.";
+      console.error("askAI error:", err);
+    } finally {
+      if (loadingEl) loadingEl.style.display = "none";
     }
-}
-</script>
-<script>
-async function uploadResume() {
+  }
 
-    const file =
-        document.getElementById("resume-file")
-        .files[0];
+  function downloadReport() {
+    const responseEl = document.getElementById("response-box");
+    const report = responseEl ? responseEl.innerText : "";
+
+    const blob = new Blob([report], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "SkillSwap_Report.txt";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  async function uploadResume() {
+    const fileInput = document.getElementById("resume-file");
+    const file = fileInput && fileInput.files[0];
+    if (!file) return;
 
     const formData = new FormData();
+    formData.append("resume", file);
 
-    formData.append(
-        "resume",
-        file
-    );
+    try {
+      const response = await fetch("/upload", {
+        method: "POST",
+        body: formData
+      });
+      const data = await response.json();
 
-    const response =
-        await fetch("/upload", {
-            method: "POST",
-            body: formData
-        });
-
-    const data =
-        await response.json();
-
-    document.getElementById(
-        "resume-input"
-    ).value = data.text;
-}
+      const inputEl = document.getElementById("resume-input");
+      if (inputEl) inputEl.value = data.text;
+    } catch (err) {
+      console.error("uploadResume error:", err);
+    }
+  }
 </script>
 </body>
 </html>
