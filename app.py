@@ -6,6 +6,9 @@ from flask import Flask, render_template, request, jsonify
 import markdown
 from pypdf import PdfReader
 import pdfplumber
+import json
+from datetime import datetime
+import re
 
 app = Flask(__name__)
 
@@ -61,6 +64,28 @@ def ask():
     <p>The AI service is temporarily unavailable or the quota has been exceeded.</p>
     <p>Please try again later.</p>
     """
+         
+    match = re.search(r'ATS Score:\s*(\d+)', answer)
+
+    ats_score = match.group(1) if match else "N/A"
+    # Save analysis history
+    history_entry = {
+    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    "ats_score": ats_score,
+    "resume": question,
+    "analysis": answer
+}
+
+    try:
+        with open("history.json", "r") as f:
+            history = json.load(f)
+    except:
+        history = []
+
+    history.append(history_entry)
+
+    with open("history.json", "w") as f:
+        json.dump(history, f, indent=4)
 
     return jsonify({
         "answer": answer
