@@ -1502,7 +1502,14 @@
     const question = questionEl ? questionEl.value : "";
 
     if (loadingEl) loadingEl.style.display = "block";
+      const analyzeBtn = document.querySelector(
+    'button[onclick="askAI()"]'
+);
 
+if (analyzeBtn) {
+    analyzeBtn.disabled = true;
+    analyzeBtn.innerText = "Analyzing...";
+}
     try {
       const response = await fetch("/ask", {
         method: "POST",
@@ -1516,15 +1523,19 @@
 
       if (responseEl) responseEl.innerHTML = data.answer;
 
-      const match = data.answer.match(/ATS Score:\s*(\d+)(?:\/100)?/);
-      if (match && scoreEl) {
-        scoreEl.innerText = "ATS Score: " + match[1] + "/100";
-      }
+      if (scoreEl) {
+    scoreEl.innerText = "ATS Score: " + data.ats_score + "/100";
+}
     } catch (err) {
       if (responseEl) responseEl.innerHTML = "Something went wrong while analyzing your resume. Please try again.";
       console.error("askAI error:", err);
     } finally {
       if (loadingEl) loadingEl.style.display = "none";
+
+if (analyzeBtn) {
+    analyzeBtn.disabled = false;
+    analyzeBtn.innerText = "Run Simulated AI Analysis";
+}
     }
   }
 
@@ -1621,11 +1632,13 @@ async function downloadReport() {
 
   async function uploadResume() {
 
-    const file =
-        document.getElementById("resume-file").files[0];
+    const file = document.getElementById("resume-file").files[0];
 
-    document.querySelector(".upload-label span").innerText =
-        file.name;
+    if (!file) return;
+
+    document.querySelector(".upload-label span").innerText = file.name;
+    document.querySelector(".upload-label small").innerText =
+    "Resume uploaded successfully ✓";
 
     const formData = new FormData();
 
