@@ -58,11 +58,12 @@ def ask():
         response = model.generate_content(prompt)
         answer = markdown.markdown(response.text)
 
-    except Exception:
-         answer = """
-    <h2>⚠️ Gemini API Error</h2>
-    <p>The AI service is temporarily unavailable or the quota has been exceeded.</p>
-    <p>Please try again later.</p>
+    except Exception as e:
+         print("Gemini Error:", e)
+
+         answer = f"""
+          <h2>⚠️ Gemini API Error</h2>
+          <p>{str(e)}</p>
     """
          
     match = re.search(r'ATS Score:\s*(\d+)', answer)
@@ -88,7 +89,8 @@ def ask():
         json.dump(history, f, indent=4)
 
     return jsonify({
-        "answer": answer
+    "answer": answer,
+    "ats_score": ats_score
 })
 
 @app.route("/upload", methods=["POST"])
@@ -110,5 +112,5 @@ def upload():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT",5000))
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=5001, debug=True)
 
